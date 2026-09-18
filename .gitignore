@@ -1,0 +1,17 @@
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.listing
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+*.glg
+*.glo
+*.gls
+*.ist

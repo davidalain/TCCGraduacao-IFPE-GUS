@@ -1,0 +1,132 @@
+%=======================================================
+\chapter{Referências e Citações}
+
+Citações e referências no \LaTeX\ podem ser trabalhosas principalmente em razão da \qq{loucura} que são as normas ABNT para trabalhos acadêmicos. Sem adentrar muito na questão, menciono apenas que os pacotes para citação e referência aqui utilizados já estão em vias de se tornarem \qq{obsoletos} por causa da recente modificação (em 2023) das normas para citação (ABNT NBR 10520). Além disso, as referências (ABNT NBR 6023), cuja atualização em 2018 e correção em 2020, também sofreram modificações. Enfim, vamos ao que interessa.
+
+Referências em \LaTeX\ são feitas em um arquivo à parte, cuja a extensão é | .bib |. Nesse projeto, o arquivo das referências chama-se \verb|referencias.bib|.
+
+Para cada tipo de referência - livro, artigo, capítulo de livro, sites, revistas, etc - existe uma entrada específica, isto é, um formato específico de registrar a referência.
+
+O exemplo a seguir é de um livro com apenas um autor. O código à esquerda é vazio e o segundo, à direita, a referência já preenchida\footnote{Ignorem a não obediência à margem. O ambiente \textit{verbatim} não a respeita.}. Em seguida, explico cada uma das linhas.
+
+\begin{multicols}{2}
+\begin{verbatim}
+	@book{, 
+		author     = {},
+		title      = {},
+		edition    = {},
+		address    = {},
+		publisher  = {},
+		year       = {},
+		translator = {},
+	}
+\end{verbatim}
+
+\begin{verbatim}
+@book{todorov2014, 
+author     = {Tzvetan Todorov },
+title      = {Simbolismo e interpretação},
+edition    = {1},
+address    = {São Paulo},
+publisher  = {Editora UNESP},
+year       = {2014},
+translator = {Nícia Adan Bonatti},
+}
+\end{verbatim}
+\end{multicols}
+
+
+{\textbf{@book{todorov2014,}} - Inicia-se a entrada com @ seguida do tipo (nesse caso, \textit{book}, porque é um livro). Em seguida, abre-se a chave e inclui-se a identificação (ou chave de entrada), separando-a dos demais campos com uma vírgula ( , ). Essa chave pode ser o que quiser, desde que sirva para identificar o trabalho.
+	
+{\textbf{author     = \{\},}} - Indica-se o nome do autor. O pacote utilizado (\verb|abntex2cite|) requer atenção às palavras acentuadas. Veja a documentação do pacote para uso de palavras acentuadas na construção das referências.
+
+{\textbf{title      = \{\},}} - Indica-se o título do trabalho. Idem em relação ao uso de acentos.
+
+{\textbf{edition    = \{\},}} - Indica-se o número da edição. Se não houver, deixa-se em branco.
+
+{\textbf{address    = \{\},}} - Indica-se o local da publicação. Essa informação encontra-se na ficha catalográfica do livro.
+
+{\textbf{publisher  = \{\},}} - Indica-se a editora resposnável pela publicação do livro.
+
+{\textbf{year       = \{\},}} - Indica-se o ano de publicação.
+
+{\textbf{translator = \{\},}} - Indica-se quem traduziu a obra. Se não houver, deixa-se em branco.
+
+É preciso obedecer às chaves e vírgulas, caso contrário, no momento da compilação, haverá erro.
+
+Para a utilização correta do pacote \verb|abntex2cite| nesse projeto, é essencial a leitura dos seguintes materiais disponíveis em \url{https://www.ctan.org/pkg/abntex2}, em especial:
+
+\begin{itemize}
+    \item \url{https://linorg.usp.br/CTAN/macros/latex/contrib/abntex2/doc/abntex2cite.pdf}
+    \item \url{https://linorg.usp.br/CTAN/macros/latex/contrib/abntex2/doc/abntex2cite-alf.pdf}
+\end{itemize}
+
+Ambos os pacotes contém exemplos de uso e, também, a acentuação necessária para cada entrada bibliográfica que deve ser inserida no arquivo \verb|referencias.bib|.
+
+Há, também, um gerador \textit{online} de referências em \LaTeX. O endereço é \url{https://truben.no/latex/bibtex/}. No entanto, advirto que existe a possibilidade de erro porque os campos do pacote \verb|abntex2cite|, aqui utilizado, não são os mesmos gerados por esse \textit{site}. Nada impede o teste!!!
+
+Após construída a lista de referências (ou o banco de dados de referências), é possível citar as obras no texto. Citar \qq{manualmente} uma referência e depois incluí-la no arquivo .bib fará o \LaTeX\ ignorar tal referência. Ou seja: ela não será incluída na seção \textbf{Referências}. Isso porque somente se referencia o que se cita no texto e, como o \LaTeX\ faz por você esse processo, mas somente se a citação \LaTeX\ (ou seja, com um comando) for utilizada.
+
+Vejamos um exemplo. No arquivo \verb|referencias.bib| existe a seguinte entrada de exemplo:
+
+\begin{verbatim}
+	@article{Smurf1980,
+		author  = {Papai Smurf},
+		title   = {Como preparar trufas azuis},
+		journal = {The Smurfs Newsletters},
+		ISSN    = {123-456-789},
+		volume  = {1},
+		number  = {1},
+		month   = {Jan.},
+		year    = {1980},
+		pages   = {1-10},
+		doi     = {http://doi.com.com},
+		url     = {http://www.thesmurfs.com.com},
+		urlaccessdate = {10 jun. 1981},
+	}
+\end{verbatim}
+
+Se eu optar por citar de modo manual, por exemplo, assim (itálico): 
+\ \\
+
+\fbox{\textit{De acordo com Smurf (1980), as trufas são deliciosas e por isso Gargamel as quer.}}
+\ \\
+
+Porém, se eu citar utilizando o comando próprio de citações (\verb|\cite|), após a compilação, a referência será incluída na seção \textbf{Referências} conforme a ABNT NBR 6023. Por exemplo
+
+\fbox{\textit{De acordo com \cite{Smurf1980}, as trufas são deliciosas e por isso Gargamel as quer.}}
+
+Observe que agora a citação aparece em cor azul, está \textit{hiperlinkada} apontando diretamente para a referência na seção... \textbf{Referências}!!!
+
+Os comandos para citar são: 
+\begin{itemize}
+	\item \verb|\cite{chave_de_entrada}| e 
+	\item \verb|\citeonline{chave_de_entrada}|. 
+\end{itemize}
+
+O primeiro é utilizado para citações diretas enquanto o segundo, para citações indiretas.
+
+Nos dois casos é possível indicar o número da página desta forma:
+\ \\
+
+\begin{codex}{Códigos para citações incluindo a página}
+\cite[p. 35]{Flintstones1900}
+
+\citeonline[págs. 25-50]{Thor2017}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+
+Assim, vemos que não é \qq{sempre que se come uma carne de tiranossauro rex com temperos indianos} \cite[p. 35]{Flintstones1900}.
+
+Foi, de fato, algo inesperado. Como nos lembrou \citeonline[págs. 25-50]{Thor2017}, o martelo estava sem controle absoluto e eu não se pode fazer nada.
+
+\chapter{Playground}
+
+Utilize esse capítulo para praticar o uso do \LaTeX.
+
+Use os ambientes e os comandos deste modelo para ter certeza de como utilizá-los durante a escrita do trabalho.
+
+\textbf{Inicie aqui.}
+

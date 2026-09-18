@@ -1,0 +1,50 @@
+%=======================================================
+\chapter{Imagens}
+
+\textsc{Qual o pacote?} \textbf{graphicx} (Acesso: \url{https://www.ctan.org/pkg/graphicx})
+
+\textsc{O que faz?}: Insere imagens nos formatos JPG, PNG, PDF ou EPS. Demonstro somente como incluir uma imagem centralizada na página.
+\ \\
+
+\begin{codex}{Código para inserção de imagens}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=.30]{./img/github.png}
+\caption{Imagem GitHub}
+\label{fig:github}
+\end{center}
+\end{figure}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=.30]{./img/github.png}
+		\caption{Imagem GitHub}
+		\label{fig:github}
+	\end{center}
+\end{figure}
+
+Uma demonstração combinada com o uso do pacote \textbf{multicol} dispondo as figuras lado a lado.
+\ \\
+
+\begin{codex}{Código para figuras lado a lado com multicol}
+\begin{multicols}{2}
+\includegraphics[scale=.15]{./img/github.png}
+
+\includegraphics[scale=.040]{./img/tex-lion.png}
+\end{multicols}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+
+\begin{multicols}{2}
+	\includegraphics[scale=.15]{./img/github.png}
+	
+	\includegraphics[scale=.040]{./img/tex-lion.png}
+\end{multicols}
+
+Outras opções, tais como imagens lado a lado, aumentar ou diminuir o tamanho, inserir imagem dentro de caixas de texto, etc, são indicadas no pacote.

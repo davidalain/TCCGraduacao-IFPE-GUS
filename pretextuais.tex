@@ -8,7 +8,7 @@
 %INFORMAÇÕES DA INSTITUIÇÃO E CURSO
 \newcommand{\instituicao}{Instituto Federal de Pernambuco}
 \newcommand{\campus}{Campus Garanhuns}
-\newcommand{\curso}{Análise e desenvolvimento de sistemas}
+\newcommand{\curso}{Análise e Desenvolvimento de Sistemas}
 \newcommand{\titulacao}{Tecnólogo}%Ou bacharel, ou licenciado.
 \newcommand{\localdefesa}{Garanhuns - PE}
 %Data exata da defesa para a folha de aprovação.
@@ -47,6 +47,7 @@
 
 \vspace*{5cm}
 \textbf{\thetitle}\\
+\vspace*{1cm}
 \textbf{\theauthor}
 
 \vspace*{\fill}
@@ -55,8 +56,15 @@
 \end{center}
 
 %FOLHA DE ROSTO + TIPO DE TRABALHO
-\frontmatter{
+%Conforme a ABNT, a contagem das páginas começa na folha de rosto (a capa não é contada).
+%A versão com asterisco (\frontmatter*) mantém a numeração em algarismos arábicos.
+%As páginas pré-textuais são contadas, mas o número não é impresso
+%(inclusive nas páginas de abertura das listas e do sumário).
+\pagestyle{empty}
+\aliaspagestyle{chapter}{empty}
+\frontmatter*{
 \newpage
+\setcounter{page}{1}
 \thispagestyle{empty}
 \begin{center}
     \textbf{\theauthor}
@@ -68,7 +76,7 @@
 %ATENÇÃO À PREPOSIÇÃO "AO/À"
 \vspace*{2cm}
     \begin{textofolharosto}
-    Trabalho de conclusão de curso apresentado ao/à \instituicao\ \campus\ como requisito parcial para obtenção do título de \titulacao\ em \curso.\\
+    Trabalho de conclusão de curso apresentado ao \instituicao\ \campus\ como requisito parcial para obtenção do título de \titulacao\ em \curso.\\
     \ \\
     \textbf{Orientador:} \orientador
     \end{textofolharosto}
@@ -118,12 +126,6 @@
         \localavaldois
     \end{center}
 
-%EPÍGRAFE
-\newpage
-\thispagestyle{empty}
-\vspace*{\fill}
-\epigraph{\textit{Uma frase importante relacionada ao trabalho.}}{\textsc{Quem disse a frase.}}
-
 %DEDICATÓRIA
 \newpage
 \thispagestyle{empty}
@@ -155,6 +157,12 @@ Agradeço incomensuravelmente ao ilustríssimo Professor Dr. André Padilha por 
 
 \noindent  \lipsum[10]
 
+%EPÍGRAFE
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\epigraph{\textit{Uma frase importante relacionada ao trabalho.}}{\textsc{Quem disse a frase.}}
+
 %RESUMO e ABSTRACT
 \newpage
 \pagestyle{empty}
@@ -179,9 +187,17 @@ Agradeço incomensuravelmente ao ilustríssimo Professor Dr. André Padilha por 
 \vspace*{0.5cm}
 \noindent\textbf{Keywords:} Word 1; Word 2; Word 3.
 }
-\newpage\tableofcontents*
-\thispagestyle{empty}
+%LISTAS (ilustrações, tabelas, abreviaturas e siglas)
 \newpage\listoffigures*
 \thispagestyle{empty}
 \newpage\listoftables*
+\thispagestyle{empty}
+\setglossarystyle{abreviacoes}
+\printglossary[
+    type=\acronymtype,
+    title={Lista de abreviaturas e siglas}
+]
+\thispagestyle{empty}
+%SUMÁRIO (último elemento pré-textual, conforme a ABNT)
+\newpage\tableofcontents*
 \thispagestyle{empty}

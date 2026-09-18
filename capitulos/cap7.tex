@@ -1,0 +1,41 @@
+%=======================================================
+\chapter{Diagramas}
+
+\textsc{Pacote:} \textbf{smartdiagram} (Acesso: \url{https://www.ctan.org/pkg/smartdiagram})
+
+\textsc{O que faz?}: Cria diagramas coloridos, em escala de cinza, branco e preto, em formatos diversos a partir de uma lista de itens simples.
+\ \\
+
+\begin{codex}{Código para diagrama circular}
+\begin{center}
+\smartdiagram[circular diagram]{\LaTeX,Digitar,Compilar,Produzir PDF}
+\end{center}	
+\end{codex}
+\ \\
+
+\textsc{Resultado}:
+
+\begin{center}
+	\smartdiagram[circular diagram]{\LaTeX,Digitar,Compilar,Produzir PDF}
+\end{center}
+
+\begin{codex}{Código para diagrama descritivo}
+\smartdiagram[descriptive diagram]{
+{Set up,The set up operation consist of..},
+{Run, {After having set up the program, you must run..}},
+{Analyse, You must check what did with analytical tools like..},
+{Modify, {After the analysis, you can still modify or add..}},
+}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+
+\begin{center}
+	\smartdiagram[descriptive diagram]{
+		{Set up,The set up operation consist of..},
+		{Run, {After having set up the program, you must run..}},
+		{Analyse, You must check what did with analytical tools like..},
+		{Modify, {After the analysis, you can still modify or add..}},
+	}
+\end{center}

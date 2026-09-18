@@ -1,0 +1,54 @@
+%=======================================================
+\chapter{Texto em várias colunas}
+
+\textsc{Qual o pacote:} \textbf{multicol} (Acesso: \url{https://www.ctan.org/pkg/multicol})
+
+\textsc{O que faz?}: Divide o texto em colunas (Máx. de 10 colunas.)
+\ \\
+
+\begin{codex}{Código multicolunas com valor 3 e Lorem Ipsum}
+\begin{multicols}{3}
+\lipsum[2]
+\end{multicols}
+\end{codex}
+\ \\
+
+\textsc{Resultado}:
+\ \\
+
+\begin{multicols}{3}
+	\lipsum[2]
+\end{multicols}
+
+\begin{codex}{Código multicolunas com valor 5 e Lorem Ipsum}
+\begin{multicols}{5}
+\lipsum[2]
+\end{multicols}
+\end{codex}
+\ \\
+
+\textsc{Resultado}:
+
+\begin{multicols}{5}
+	\lipsum[2]
+\end{multicols}
+\ \\
+Também é possível incluir uma linha separadora entre as colunas. Ver a seguir.
+\ \\
+
+\begin{codex}{Código multicolunas com valor 3 e Lorem Ipsum + Linha}
+\begin{multicols}{3}
+\setlength{\columnseprule}{0.2pt}
+\lipsum[2]
+\end{multicols}
+\end{codex}
+\ \\
+
+\textsc{Resultado}:
+
+\begin{multicols}{3}
+	\setlength{\columnseprule}{0.2pt}
+	\lipsum[2]
+\end{multicols}
+
+Veja também \url{https://www.alessandroduarte.com.br/?page_id=602} para um tutorial em português.

@@ -1,0 +1,338 @@
+%=======================================================
+\chapter{Ambientes \LaTeX\ personalizados}
+
+\subsection{citel}
+
+\textsc{O que faz?}: Formata citações longas (com mais de três linhas) de acordo com a ABNT NBR 10520\footnote{A norma foi atualizada em 2023, informando que o recuo de citações longas não precisa ser \textsc{exatamente} 4cm da margem esquerda. No entanto, preferi manter a orientação anterior da norma que definia o recuo com essas medidas.}. Tem-se um recuo de 4cm da margem, tamanho da fonte 10pt e espaçamento simples entre linhas.
+\ \\
+
+\begin{codex}{Código para citações longas}
+	\begin{citel}
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at sapien erat. Donec nunc sem, sollicitudin id accumsan vitae, pharetra at eros. Etiam tellus erat, tempus feugiat cursus quis, vestibulum sit amet lacus. Praesent sed erat non erat accumsan aliquam. Duis volutpat tellus in erat venenatis vulputate. Aliquam at mauris vitae risus congue maximus sollicitudin nec velit. Duis rhoncus, urna in scelerisque mollis, libero augue viverra arcu, vel varius risus mi id felis. Mauris quis massa ac est finibus sodales at sed tortor. Aenean vel est nec purus finibus imperdiet.
+	\end{citel}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+\ \\
+
+\begin{citel}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at sapien erat. Donec nunc sem, sollicitudin id accumsan vitae, pharetra at eros. Etiam tellus erat, tempus feugiat cursus quis, vestibulum sit amet lacus. Praesent sed erat non erat accumsan aliquam. Duis volutpat tellus in erat venenatis vulputate. Aliquam at mauris vitae risus congue maximus sollicitudin nec velit. Duis rhoncus, urna in scelerisque mollis, libero augue viverra arcu, vel varius risus mi id felis. Mauris quis massa ac est finibus sodales at sed tortor. Aenean vel est nec purus finibus imperdiet.
+\end{citel}
+
+\subsection{codex}{Inserção de códigos de programação}
+
+Depende do pacote \verb|tcolorbox|, que já vem ativado nesse modelo; porém, trata-se de um ambiente personalizado.
+
+\textsc{O que faz?}: Permite a inserção de códigos de programação para demonstração.
+
+Para este modelo de documento, criei um ambiente chamado \verb|codex| (CODigo de EXemplo). Esse ambiente é utilizado para todos os exemplos em que se demonstra o código \LaTeX. Suas características são:
+
+\begin{enumerate}
+	\item caixa de texto com moldura do título na cor cinza com letras brancas
+	\item texto inicial do título: \textbf{Exemplo} + \textbf{numeração automática do exemplo conforme o capítulo ou seção onde se inseriu o ambiente}
+	\item fundo da caixa de texto na cor cinza
+	\item numeração de linhas automáticas para análise/estudo/demonstração do código
+	\item ambiente verbatim na caixa de texto
+\end{enumerate} 
+
+Deve ser iniciado como abaixo:
+
+\begin{verbatim}
+	\begin{codex}{Digite aqui a identificação do exemplo. Obrigatório}
+		insira aqui o que desejar
+	\end{codex}
+\end{verbatim}
+
+\textsc{Resultado:}
+\ \\
+
+\begin{codex}{Digite aqui a identificação do exemplo. Obrigatório}
+	insira aqui o que desejar
+\end{codex}
+\ \\
+
+A seguir, um exemplo de código em Java\footnote{Retirado de \url{https://java.hotexamples.com/pt/examples/-/Average/-/java-average-class-examples.html}.}.
+
+\begin{codex}{Exemplo de código em Java}
+	/**
+	* @param args
+	* @throws FileNotFoundException
+	*/
+	public static void main(String[] args) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		System.out.println("Swim Meet Planner");
+		
+		// scanner to read file
+		Scanner fileReader = new Scanner(new File("src/Finalprojectinput"));
+		
+		// create results Map
+		HashMap<String, ArrayList<Integer>> results = new HashMap<String, ArrayList<Integer>>();
+		
+		// adding names and times to results Map
+		while (fileReader.hasNext()) {
+			String name = fileReader.next();
+			int time = fileReader.nextInt();
+			// does swimmer exist in map?
+			if (results.containsKey(name)) {
+				results.get(name).add(time);
+				
+			} else {
+				ArrayList<Integer> times = new ArrayList<Integer>();
+				times.add(time);
+				results.put(name, times);
+			}
+		}
+		fileReader.close();
+		Average a = new Average();
+		a.average(results);
+	}
+\end{codex}
+\ \\
+
+Caso não fosse utilizado o ambiente \verb|codex| e o código fosse digitado diretamente no editor, seu resultado seria \underline{impossível} em \LaTeX\ já que as chaves compõem a sintaxe do \LaTeX.
+
+\fbox{Importante I:}
+
+Caso você opte por considerar os exemplos de códigos como figuras, será necessário incluir o ambiente \verb|codex| dentro do ambiente \verb|figure| e adicionar, após \verb|\end{codex}| as seguintes linhas:
+
+\begin{itemize}
+	\item \verb|\caption|\{Nome do exemplo dado no título.\}
+	\item \verb|\label{id:1}| - identificação da imagem para referência cruzada
+\end{itemize}
+
+Veja a seguir:
+
+\begin{verbatim}
+	\begin{figure}[h!]
+	\begin{codex}{Ambiente codex em ambiente figure}
+	arc=0mm,
+	listing only,
+	colback=black!5!white,
+	colframe=black!85!white,
+	fonttitle=\bfseries,
+	title=Exemplo
+	\end{codex}
+	\caption{Ambiente codex em ambiente figure}
+	\label{cod:1} % aqui é a id, seguida de : e a numeração
+	\end{figure}
+\end{verbatim}
+
+\textsc{Resultado:}
+
+\begin{figure}[h!]
+\begin{codex}{Ambiente \{codex\} em ambiente \{figure\}}
+arc=0mm,
+listing only,
+colback=black!5!white,
+colframe=black!85!white,
+fonttitle=\bfseries,
+title=Exemplo
+\end{codex}
+\caption{Ambiente \{codex\} em ambiente \{figure\}}
+\label{cod:1}
+\end{figure}
+
+Observe que a legenda já é inserida automaticamente e, também, esse exemplo já aparece na lista de figuras, no início do documento.
+
+Caso se deseje referenciar essa figura ao longo do documento como referência cruzada, basta digitar \verb|\ref{cod:1}|, como aqui: \textit{O exemplo da figura \ref{cod:1} é do ambiente \{codex\} dentro do ambiente \{figure\}}.
+
+\fbox{Importante II:}
+
+Sempre alinhe o código na margem esquerda pois, caso o alinhamento fique com muitas tabulações, o código parecerá desorganizado (como o do Java acima).
+
+\subsection{Caixas de Texto}
+
+Além do pacote \verb|tcolorbox| e do ambiente \verb|codex|, explicado anteriormente, há diversos \textbf{ambientes} possíveis nesse modelo para criar caixas de texto. São eles:
+
+\subsubsection{observ}
+
+\textsc{O que faz?} Produz uma caixa de texto com o título \qq{\textbf{Observação}} no topo para inserir... \textit{observações} que se julguem importantes. A fonte utilizada para o texto dentro da caixa é a mesma do documento.
+\ \\
+
+\begin{codex}{Código para caixa para observações}
+	\begin{observ}
+	Aqui o texto muito importante para observações.
+	\end{observ}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+\ \\
+
+\begin{observ}
+	Aqui o texto muito importante para observações.
+\end{observ}
+\ \\
+\fbox{Observação:} 
+
+Todos os ambientes a seguir produzem caixas de texto. Em alguns trabalhos acadêmicos o \textit{corpus} precisa ser exibido com diferentes formatações e, por isso, muitas devem ser diferenciados para facilitar a leitura. 
+
+\subsubsection{mverde e mvermelha}
+
+\textsc{O que fazem?} Produzem caixas de texto \textsc{com título} nas cores verde e vermelha, respectivamente:
+\ \\
+
+\begin{codex}{Código para o ambiente mverde}
+	\begin{mverde}{Título da caixa mverde}
+	Note que a indicação do título é obrigatória.
+	\end{mverde}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+\begin{mverde}{Título da caixa mverde}
+	Note que a indicação do título é obrigatória.
+\end{mverde}
+\ \\
+
+\begin{codex}{Código para o ambiente mvermelha}
+	\begin{mvermelha}{Título da caixa mvermelha}
+	Note que a indicação do título é obrigatória.
+	\end{mvermelha}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+\begin{mvermelha}{Título da caixa mvermelha}
+	Note que a indicação do título é obrigatória.
+\end{mvermelha}
+\ \\
+
+\noindent\fbox{Não esquecer:} 
+
+Para as caixas/os ambientes \verb|mverde| e \verb|mvermelha| o texto do título é obrigatório.
+
+\subsubsection{bxpreta, bxlaranja, bxcinza, bxazul e bxvermelha}
+
+As caixas seguintes não requerem título.
+
+\begin{codex}{Ambiente bxpreta}
+	\begin{bxpreta}
+	Caixa de texto com moldura preta na lateral esquerda. 
+	
+	Mais algum texto para complementar.   
+	\end{bxpreta} 
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+\ \\
+
+\begin{bxpreta}
+	Caixa de texto com \textbf{moldura preta} na lateral esquerda. 
+	
+	Mais algum texto para complementar.     
+\end{bxpreta} 
+\ \\
+
+\begin{codex}{Ambiente bxlaranja}
+	\begin{bxlaranja}
+	Caixa de texto com \textbf{moldura laranja} na lateral esquerda.  
+	
+	Mais algum texto para complementar.  
+	\end{bxlaranja}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+\ \\
+
+\begin{bxlaranja}
+	Caixa de texto com \textbf{moldura laranja} na lateral esquerda.
+	
+	Mais algum texto para complementar.   
+\end{bxlaranja}
+\ \\
+
+\begin{codex}{Ambiente bxcinza}
+	\begin{bxcinza}
+	Caixa de texto com \textbf{moldura cinza} na lateral esquerda. 
+	
+	Mais algum texto para complementar.  
+	\end{bxcinza}
+\end{codex}
+\ \\ 
+
+\textsc{Resultado:}
+\ \\
+
+\begin{bxcinza}
+	Caixa de texto com \textbf{moldura cinza} na lateral esquerda. 
+	
+	Mais algum texto para complementar.  
+\end{bxcinza}
+\ \\
+
+\begin{codex}{Ambiente bxazul}
+	\begin{bxazul}
+	Caixa de texto com \textbf{moldura azul} na lateral esquerda. 
+	
+	Mais algum texto para complementar.  
+	\end{bxazul}
+\end{codex}
+\ \\
+
+ \textsc{Resultado:}
+ \ \\
+ 
+\begin{bxazul}
+	Caixa de texto com \textbf{moldura azul} na lateral esquerda. 
+	
+	Mais algum texto para complementar.  
+\end{bxazul}
+\ \\
+
+\begin{codex}{Ambiente bxvermelha}
+	\begin{bxvermelha}
+	Caixa de texto com \textbf{moldura vermelha} na lateral esquerda. 
+		
+	Mais algum texto para complementar.  
+	\end{bxvermelha}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+\ \\
+
+\begin{bxvermelha}
+	Caixa de texto com \textbf{moldura vermelha} na lateral esquerda. 
+	
+	Mais algum texto para complementar.  
+\end{bxvermelha}
+
+
+\subsubsection{alertmessage}
+
+\textsc{Qual o pacote?}: alertmessage (Acesso: \url{https://www.ctan.org/pkg/alertmessage})
+
+Trata-se esse pacote de um \textit{comando} e não de um ambiente.
+
+\textsc{O que faz?}: Produz caixas de texto com as seguintes especificações.
+
+\begin{itemize}
+\item caixa azul, com ícone "i".
+\item caixa verde com ícone de "confere".
+\item caixa vermelha com ícone de "x" ou "erro".
+\item caixa laranja com ícone de"!" ou exclamação.
+\end{itemize}
+\ \\
+
+\begin{codex}{Todos os comandos para alertmessage}
+	A. \alertinfo{caixa azul, com ícone "i"}
+	B. \alertsuccess{caixa verde com ícone de "confere"}
+	C. \alerterror{caixa vermelha com ícone de "x" ou "erro"}
+	D. \alertwarning{caixa laranja com ícone de"!" ou exclamação}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+\ \\
+
+A. \alertinfo{caixa azul, com ícone "i".}
+
+B. \alertsuccess{caixa verde com ícone de "confere".}
+
+C. \alerterror{caixa vermelha com ícone de "x" ou "erro".}
+
+D. \alertwarning{caixa laranja com ícone de"!" ou exclamação.}

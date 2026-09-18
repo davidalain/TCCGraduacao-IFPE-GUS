@@ -1,0 +1,38 @@
+%=======================================================
+\chapter{Verbatim}
+
+\textsc{Qual o pacote?}: \textbf{verbatim}\footnote{Por padrão, já incluído no \LaTeX.} (Acesso: \url{https://www.ctan.org/pkg/verbatim})
+
+\textsc{O que faz?}: Digita qualquer coisa fora da formatação do texto, utilizando fonte monoespaçada e conforme os espaçamentos desejados. Útil para pequenos trechos de código.
+\ \\
+
+\begin{codex}{Códigos ambiente verbatim}
+	\verb|comando 1|
+	\verb*|comando 2]|
+	\begin{verbatim}
+		qualquer outro texto
+	\end{verbatim}
+\end{codex}
+\ \\
+\textsc{Resultado}:
+
+\verb|comando 1|
+
+\verb*|comando 2]|
+
+\begin{verbatim}
+	qualquer outro texto
+	e outro texto qualquer
+\end{verbatim}
+
+\textbf{Importante:} O ambiente verbatim não respeitas as margens/quebra de linhas. Isto quer dizer que se tudo for digitado em uma única linha, sem quebra manual, ele irá mostrar o texto quebrado. Observe:
+
+\begin{verbatim}
+	Stricto sensu é uma expressão latina que significa, literalmente, "em sentido específico", por oposição ao "sentido amplo" de um termo. No âmbito do ensino, se refere ao nível de pós-graduação que titula o estudante como mestre ou doutor em determinado campo do conhecimento. Denota, neste caso, um grau mais elevado do que a pesquisa lato sensu.
+\end{verbatim}
+
+O código acima é:
+
+\begin{codex}{Código verbatim sem quebra de linha}
+Stricto sensu é uma expressão latina que significa, literalmente, "em sentido específico", por oposição ao "sentido amplo" de um termo. No âmbito do ensino, se refere ao nível de pós-graduação que titula o estudante como mestre ou doutor em determinado campo do conhecimento. Denota, neste caso, um grau mais elevado do que a pesquisa lato sensu.
+\end{codex}

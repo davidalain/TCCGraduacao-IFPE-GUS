@@ -1,0 +1,136 @@
+%=======================================================
+\chapter{Tabelas}
+
+\textsc{Quais os pacotes?} \textbf{tabularx} (Acesso: \url{https://www.ctan.org/pkg/tabularx}) e \textbf{booktabs} (Acesso: \url{https://www.ctan.org/pkg/booktabs/}).
+
+\textsc{O que fazem?}: Ambos permitem maior controle de personalização nas tabelas. 
+
+Relevante observar que tabelas, \textit{stricto sensu}, são elementos destinados a apresentar dados \textbf{numéricos} e não apresentam linhas laterais. Temos o costume, aqui no Brasil, de incluir tais linhas, inserir outros dados que não sejam numéricos e identificar o elemento como tabela. Esse é um procedimento incorreto. 
+
+Caso se apresentem dados não numéricos e linhas laterais, deve-se identificar esse elementos como \textsc{quadro}.
+
+Veja a seguir um exemplo de como normalmente se faz no Brasil\footnote{Obviamente que fica a critério da pessoa que elabora o trabalho optar pela forma abaixo ou não.}.
+\ \\
+
+\begin{codex}{Código para tabela com legenda e referência cruzada}
+\begin{table}[h!]
+	\begin{center}
+	\begin{tabularx}{0.8\textwidth} { 
+	| >{\centering\arraybackslash}X 
+	| >{\centering\arraybackslash}X 
+	| >{\centering\arraybackslash}X | }
+	\hline
+	item 1 & item 2 & item 3 \\
+	\hline
+	item 4  & item 5  & item 6  \\
+	\hline
+	\end{tabularx}
+	\caption{Tabela de teste com linhas laterais.}
+	\label{table:1}
+	\end{center}
+	\end{table}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabularx}{0.8\textwidth} { 
+				| >{\centering\arraybackslash}X 
+				| >{\centering\arraybackslash}X 
+				| >{\centering\arraybackslash}X | }
+			\hline
+			item 1 & item 2 & item 3 \\
+			\hline
+			item 4  & item 5  & item 6  \\
+			\hline
+		\end{tabularx}
+		\caption{Tabela de teste com linhas laterais.}
+		\label{table:1}
+	\end{center}
+\end{table}
+
+E para referenciar a tabela/quadro, usamos o comando \verb|\ref{table:1}|, como abaixo.
+
+Ex.: \textit{Como podemos observar na tabela \ref{table:1}, blá blá...}
+
+No entanto, a correta aplicação e formatação de uma tabela deve ser conforme o código a seguir.
+\ \\
+
+\begin{codex}{Código de exemplo de tabela}
+\begin{table}[h!]
+	\begin{center}
+	\begin{tabular}{c|c|c|c}
+	\hline
+	Percentual & 15\% & 37\% & 50\% \\
+	\hline
+	Número & 23 & 44 & 71 \\
+	\hline
+	Variação & 2.78 & 4.59 & 10.96 \\
+	\hline
+	Total & > 3 & < 8 & >15  \\
+	\hline
+	\end{tabular}
+	\caption{Tabela de teste sem linhas laterais. Abaixo, a ref. cruzada.}
+	\label{table:2}
+	\end{center}
+\end{table}
+\end{codex}
+\ \\
+
+\textsc{Resultado:}
+
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabular}{c|c|c|c}
+			\hline
+			Percentual & 15\% & 37\% & 50\% \\
+			\hline
+			Número & 23 & 44 & 71 \\
+			\hline
+			Variação & 2.78 & 4.59 & 10.96 \\
+			\hline
+			Total & > 3 & < 8 & >15  \\
+			\hline
+		\end{tabular}
+		\caption{Tabela de teste sem linhas laterais. Abaixo, a ref. cruzada.}
+		\label{table:2}
+	\end{center}
+\end{table}
+
+E, como acima, referenciamos a tabela (ref. cruzada) com o comando \verb|\ref{table:2}|.
+
+Ex.: \textit{Como podemos observar na tabela \ref{table:2}, blá blá...}
+
+A lista de tabela, quando identificadas pelos dois comandos \verb|\caption{...}| e \verb|\label{...}| já são inseridas automaticamente na seção \textbf{Lista de tabelas}.
+
+Uma observação importante é que a numeração da tabela é feita conforme a seção ou subseção, inicialmente, seguida do número (se primeira tabela, se segunda, etc) daquela seção. No exemplo acima temos tabela \ref{table:2} porque ela é a segunda tabela da seção 9.
+
+Tabelas em \LaTeX\ são incrivelmente \qq{complicadas} de fazer. Sugiro abaixo uma breve lista com geradores de códigos de tabela em \LaTeX\ \textit{on-line}.
+
+\begin{enumerate}
+	\item \url{https://www.tablesgenerator.com/}
+	\item \url{https://www.latex-tables.com/}
+	\item \url{https://clevert.com.br/latex/latextable.php}
+\end{enumerate}
+
+Por fim, ao final do arquivo \verb|pretextuais.tex|, há os seguintes códigos:
+\ \\
+\begin{codex}{Códigos para tabelas e figuras}
+	\newpage\tableofcontents*
+	\thispagestyle{empty}
+	\newpage\listoffigures*
+	\thispagestyle{empty}
+	\newpage\listoftables*
+	\thispagestyle{empty}
+\end{codex}
+\ \\
+Caso não existam nem figuras nem tabelas no trabalho, basta excluir as linhas: 
+
+\begin{verbatim} 
+	\newpage\listoffigures*
+	\thispagestyle{empty}
+	\newpage\listoftables*
+	\thispagestyle{empty} 
+\end{verbatim}

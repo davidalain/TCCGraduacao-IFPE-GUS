@@ -1,0 +1,90 @@
+%Nome do seu capítulo/seção 1. Use a ref. cruzada como em \label
+\chapter{Estrutura do projeto}
+
+Existem seis arquivos principais do projeto e duas pastas. São eles:
+
+\begin{enumerate}
+	\item \verb|definicoes.tex|
+	\item \verb|pretextuais.tex|
+	\item \verb|textuais.tex|
+	\item \verb|postextuais.tex|
+	\item \verb|referencias.bib|
+	\item \verb|fichacatalografica.pdf|
+	\item \verb|img|
+	\item \verb|capitulos|
+\end{enumerate}
+
+O arquivo \verb|definicoes.tex| contém todos os pacotes e configurações adicionais de ambientes do projeto. Essas configurações obedecem à norma ABNT NBR 14724:2011. Caso algum pacote ou configuração específica necessite inclusão, sugiro realizar nesse arquivo.
+
+O arquivo \verb|pretextuais.tex| contém todos os elementos pré-textuais obrigatórios e opcionais conforme a norma referida acima, tais como:
+
+\begin{itemize}
+	\item Capa
+	\item Folha de rosto
+	\item Ficha catalográfica (ver explicação abaixo)
+	\item Folha de aprovação
+	\item Epígrafe
+	\item Dedicatória
+	\item Agradecimentos
+	\item Resumo e Abstract
+\end{itemize}. 
+
+É preciso lê-lo com cuidado a fim de preencher os campos (nome do trabalho, estudante, orientador, etc) de forma adequada. No caso de não se desejar incluir os elementos opcionais (epígrafe, agradecimento, etc), basta comentar (por um sinal de \%) antes das respectivas linhas. Todos os elementos opcionais e obrigatórios estão identificados nesse arquivo.
+
+O arquivo \verb|textuais.tex| é o arquivo em que o trabalho deve ser digitado. Deve conter todas as seções do trabalho (apresentação, seção 1, seção 2, considerações finais e referências\footnote{Ver explicação mais adiante.}).
+
+Nesse arquivo há, também, uma seção chamada \textbf{Playground} em que é possível praticar os comandos e os ambientes dos pacotes utilizados. Além disso, na seção \textbf{Considerações Finais} indica-se a versão do \TeX Live utilizada para a criação desse modelo.
+
+O arquivo \verb|postextuais.tex| contém somente os elementos pós-textuais opcionais \textbf{Anexos} e \textbf{Apêndices}. As referências não estão incluídas nesse arquivo. Caso não se utilizem anexos ou apêndices, deve-se comentar a linha \verb|\input{postextuais}| ao final \underline{deste} arquivo (textuais.tex).
+
+Observe que as \textbf{referências} são elementos pós-textuais. No entanto, o \LaTeX, especificamente o pacote \textit{Memoir}, no qual esse modelo se baseia, divide as partes do documento em \verb|\frontmatter| (está no pretextuais.tex), \verb|\maintmatter| (está no início desse arquivo) e \verb|\backmatter| (está no final deste arquivo). Como as referências, que são obrigatórias, antecedem anexos e/ou apêndices, para facilitar a organização, incluí a indicação de onde se localiza o arquivo com as referências aqui, no \verb|textuais.tex| porque, se inexistirem anexos e apêndices, basta comentar a linha respectiva (ver instrução acima) sem prejuízo às referências.
+
+O arquivo \verb|referencias.bib| é o arquivo com todas as referências utilizadas no trabalho. Esse arquivo funciona como um banco de dados. O \LaTeX\ lê cada uma das entradas (livro, artigo, capítulo de livro, manual, etc) e faz a compilação no formato da ABNT NBR 6023:2018. Existem entradas já preenchidas que servem como modelos e, também, entradas em branco para facilitar o copia+cola. Veja mais atentamente a seção \textbf{Referências}, pois lá existem explicações mais detalhadas.
+
+O arquivo \verb|fichacatalografica.pdf| serve apenas para a compilação, durante a escrita do trabalho, não dar erro. Esse arquivo é criado pelo/a bibliotecário/a do campus (ou instituição, caso não seja o IFPE) ao final do trabalho (após a defesa). Deve ser convertido para .pdf e nomeado como \textbf{fichacatalografica.pdf}. Em seguida, copia-se esse arquivo em .pdf para a pasta do projeto de modo a substituir o arquivo existente. Depois, compila-se normalmente e \textit{voilá}, tudo pronto para o depósito no RI.
+
+A pasta \verb|img| é onde devem ser colocadas todas as imagens (caso as utilize) do trabalho. No momento da inclusão da imagem no arquivo, o caminho da imagem deve ser relativo, por exemplo\footnote{Ver instruções específicas na seção Imagens.}: comando-para-imagem\{./img/nome-da-imagem.png\}.Deve-se sempre  indicar a extensão da imagem: png, jpg, jpeg, etc.
+
+A pasta \verb|capitulos| é onde devem ser colocados os arquivos de capítulos do documento.
+
+Cada uma das seções inicia-se com uma pergunta: \textbf{Qual o pacote?}, cuja resposta indica o endereço URL do pacote no CTAN (Comprenhensive \TeX Archive Network), um repositório de todos os pacotes do \LaTeX, bem como a documentação de cada um. Em seguida, outra pergunta: \textbf{O que faz?}, indicando o que aquele pacote, incluído nesse modelo, faz em termos de formatação. Depois, temos uma caixa com o código e, em seguida, o resultado daquele código.
+
+\section{Algumas questões sobre o \LaTeX}
+
+O \LaTeX\ é um sistema de preparação de documento. Sua sintaxe se baseia em \qq{\textit{tags}} e, do mesmo modo que linguagens de programação, existem algumas palavras reservadas. Não só isso, existem caracteres \qq{reservados} também.
+
+A barra invertida \verb| \ | indica o início de um comando ou de um ambiente.
+
+As chaves \verb| { } | podem indicar o nome do comando ou do ambiente, ou ainda o que deve estar em um ou outro.
+
+Um comando é feito com a barra invertida e o seu nome, por exemplo, para indicar negrito, o comando é \verb|\textbf{texto em negrito}| que resultará em: \textbf{texto em negrito}.
+
+Um ambiente é feito com a seguintes sintaxe: \verb|\begin{ambiente}| e \verb|\end{ambiente}|. Tudo que vem entre o \qq{begin} e o \qq{end} é o que se deseja obter em termos de formatação. 
+
+Por exemplo, nesse modelo existe o ambiente \verb|citel|, que serve para inserir citações longas conforme ABNT NBR 10520. Sua sintaxe é:
+\ \\
+
+\begin{codex}{Exemplo de ambiente}
+\begin{citel}
+Aqui você insere a citação longa, isto é, com mais de três linhas.
+Para esse exemplo, incluí também o Lorem Ipsum. \lipsum[1]
+\end{citel}
+\end{codex}
+\ \\
+
+O ambiente acima resulta em:
+
+\begin{citel}{Exemplo de ambiente}
+	Aqui você insere a citação longa, isto é, com mais de três linhas. Para esse exemplo, incluí também o Lorem Ipsum. \lipsum[1]
+\end{citel}
+
+A sintaxe da maioria dos comandos e ambientes personalizados para esse modelo está descrita nas próximas seções.
+
+Para quem deseja aprender sozinho sobre o \LaTeX, sugiro consultar os documentos:
+
+\begin{enumerate}
+	\item \url{https://www.ime.usp.br/~reverbel/mac212-02/material/lshortBR.pdf}
+	\item \url{https://fdocument.org/document/a-nao-tao-pequena-introducao-ao-latex2e-ou-latex2e-em-118-minutos.html?page=7}
+\end{enumerate}
+
+São boas introduções para manipulação básica do \LaTeX.

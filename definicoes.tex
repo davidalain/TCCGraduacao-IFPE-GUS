@@ -33,11 +33,14 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{pdfpages}
+\usepackage{longtable}
 
 %OUTROS PACOTES ESPECÍFICOS POR ÁREA DE ESTUDO/PESQUISA
 
-
-
+\renewcommand{\appendixpagename}{Apêndices}
 
 %FIM
 
@@ -63,6 +66,15 @@
 \usepackage{calc}
 %Fonte 10pt para legendas de figuras e tabelas
 \usepackage[font=footnotesize]{caption}
+%Numeração contínua das figuras e tabelas (Figura 1, Tabela 1...), sem o número do capítulo.
+%O \mainmatter da classe memoir reativa a numeração por capítulo,
+%por isso a redefinição do comando interno que ele chama.
+\makeatletter
+\renewcommand\@memmain@floats{%
+	\counterwithout{figure}{chapter}
+	\counterwithout{table}{chapter}
+}
+\makeatother
 %Gerar Lorem Ipsum.
 \usepackage{lipsum}
 %Idiomas (o último é o principal do documento).
@@ -84,7 +96,23 @@
 			colorlinks=true,%
 			allcolors=blue]{hyperref}
 %Caso queira links com a cor igual ao texto (preto), mudar acima para 'colorlinks=false'.
+\usepackage[automake,nonumberlist,nopostdot]{glossaries}
+\makeglossaries
+% Estilo personalizado para a lista de abreviações
+\newglossarystyle{abreviacoes}{
+    \setglossarystyle{long}
 
+    \renewenvironment{theglossary}
+        {\begin{longtable}{@{}p{2.5cm}p{\dimexpr\textwidth-2.5cm\relax}@{}}}
+        {\end{longtable}}
+
+    \renewcommand*{\glossaryheader}{}
+    \renewcommand*{\glsgroupheading}[1]{}
+    \renewcommand*{\glsgroupskip}{}
+}
+\input{acronimos.tex}
+
+\usepackage{svg}
 %Digitar URL completas e clicáveis. 
 \usepackage{xurl}
 %Para escrever códigos ou trechos de códigos. Ver ambiente CODEX.

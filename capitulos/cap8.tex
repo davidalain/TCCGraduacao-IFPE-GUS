@@ -1,0 +1,37 @@
+%=======================================================
+\chapter{Aspas e outros símbolos tipográficos}
+
+\textsc{Pacote:} \textbf{textcmds} (Acesso: \url{https://ctan.math.illinois.edu/macros/latex/contrib/amsrefs/textcmds.pdf})
+
+\textsc{O que faz?}: Permite incluir aspas duplas e simples, e outros símbolos tipográficos, com menos esforço na digitação. Ver explicação a seguir.
+
+Por padrão, o \LaTeX\ produz aspas das seguintes formas:
+
+\begin{enumerate}
+	\item SHIFT + acento grave 2x + SHIFT + acento grave 2x + palavra ou expressão entre aspas + aspas simples 2x.
+	\begin{itemize}
+		\item 'um texto qualquer' entre aspas simples
+	\end{itemize}
+	\item SHIFT + sinal de acento grave + palavra ou expressão + aspas simples.
+	\begin{itemize}
+		\item "um texto qualquer" entre aspas duplas
+	\end{itemize}
+\end{enumerate}
+
+No primeiro exemplo, o 1º sinal das aspas simples não está correto, pois deveria estar voltado para direita.
+
+No segundo exemplo, não acrescenta o espaço entre as últimas aspas duplas e a próxima palavra.
+
+Para resolver isso e utilizar ambas as aspas corretamente, use os comandos:
+\ \\
+
+\begin{codex}{Códigos para aspas com o pacote textcmds}
+Estas são \qq{aspas duplas}.
+Estas são \q{aspas simples}.
+Estas são \qq{aspas duplas com \q{aspas simples} ao mesmo tempo}
+\end{codex}
+\ \\
+
+\textsc{Resultado}:
+
+Estas são \qq{aspas duplas}; Estas são \q{aspas simples} e estas são \qq{aspas duplas com \q{aspas simples} ao mesmo tempo}.
